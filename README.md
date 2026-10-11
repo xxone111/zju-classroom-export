@@ -33,22 +33,6 @@ npx skills add xxone111/zju-notes-assistant
 
 适用于 Claude Code、Codex、Cursor、OpenCode 等支持 Agent Skills 的客户端。
 
-也可以直接指定客户端并安装到用户级目录：
-
-```bash
-# Claude Code
-npx skills add xxone111/zju-notes-assistant --skill zju-notes-assistant -g -a claude-code
-
-# Codex
-npx skills add xxone111/zju-notes-assistant --skill zju-notes-assistant -g -a codex
-
-# Cursor
-npx skills add xxone111/zju-notes-assistant --skill zju-notes-assistant -g -a cursor
-
-# OpenCode
-npx skills add xxone111/zju-notes-assistant --skill zju-notes-assistant -g -a opencode
-```
-
 检查并更新已安装的 skill：
 
 ```bash
