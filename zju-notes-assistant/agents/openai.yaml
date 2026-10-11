@@ -1,0 +1,3 @@
+display_name: ZJU Notes Assistant
+short_description: Export ZJU course files and turn them into AI notes.
+default_prompt: Export my selected ZJU course materials and continue with my configured note workflow.

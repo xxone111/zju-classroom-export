@@ -1,11 +1,11 @@
 .DS_Store
 *.log
 *.zip
-.zju-classroom-export/
+.zju-notes-assistant/
 auth.json
 config.json
 latest-job.json
-zju-classroom-export.job.json
+zju-notes-assistant.job.json
 node_modules/
 tmp/
 dist/

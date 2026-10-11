@@ -8,7 +8,7 @@ Use this workflow when the user asks to list ZJU replays, choose a replay, expor
    - If the user provides a replay URL, parse `sub_id` directly.
    - If `sub_id` is known, call the subtitle API directly and convert `Text` into the requested transcript format.
    - If the user gives only a course name/date, use `scripts/zju_classroom_auth.js login` locally, then `list-day` or `list-month` to find candidate `sub_id` values.
-   - If direct no-auth subtitle access fails, retry with `--auth-file ~/.zju-classroom-export/auth.json` when local login is available.
+   - If direct no-auth subtitle access fails, retry with `--auth-file ~/.zju-notes-assistant/auth.json` when local login is available.
    - This avoids slow Computer Use for routine transcript export and replay selection.
 2. If multiple authenticated API candidates match, show a short numbered list with course name, teacher, date/section, `course_id`, and `sub_id`; ask the user to choose.
 3. If API-first export is unavailable or fails, ask whether the user wants to use the official browser export manually. Do not switch to Computer Use by default.
@@ -29,18 +29,18 @@ Use this workflow when the user asks to list ZJU replays, choose a replay, expor
    - `md`: export/convert to Markdown when possible.
    - `both`: keep DOCX and Markdown.
    - `ask`: ask the user which format to keep before conversion or cleanup.
-7. When using the local web helper, export a `zju-classroom-export.job.json` manifest alongside transcripts.
+7. When using the local web helper, export a `zju-notes-assistant.job.json` manifest alongside transcripts.
    - Treat the chosen output path as a root and save each transcript under `output_root/课程名/`, shared with that course's exported PDFs and LMS attachments.
    - Include selected transcript paths, course metadata, and `sub_id`.
    - Do not ask for downstream note workflow, course folders, or PDF paths inside the helper page.
    - The helper's responsibility is exporting speech-recognition originals. AI/skill follow-up should ask what to do next.
-   - Also write the same manifest to `~/.zju-classroom-export/latest-job.json`, so later AI requests can automatically find the most recent export.
+   - Also write the same manifest to `~/.zju-notes-assistant/latest-job.json`, so later AI requests can automatically find the most recent export.
    - Before export, explain that one replay fits a single-class note, multiple replays from the same course fit a weekly summary, and different courses should normally be exported separately.
    - Show a live selection summary. Warn when the selection contains multiple courses.
    - After a successful export, generate a copyable AI handoff instruction containing the course name and successful replay count. Do not require the user to locate or understand the manifest path.
    - Use `job-manifest.md` to continue into PDF annotation or chapter-note workflows.
 
-The integrated helper also handles first-time preferences, including the user's default note mode. It writes them to `~/.zju-classroom-export/config.json`; it never stores a ZJU password. Do not ask for the current PDF, match courseware, or execute downstream note workflows inside the helper.
+The integrated helper also handles first-time preferences, including the user's default note mode. It writes them to `~/.zju-notes-assistant/config.json`; it never stores a ZJU password. Do not ask for the current PDF, match courseware, or execute downstream note workflows inside the helper.
 
 ## Local Web Helper Handoff
 
@@ -54,10 +54,10 @@ The helper page should collect:
 After export, tell the user they can continue with:
 
 ```text
-请使用 zju-classroom-export 读取最近一次导出的课堂录音（课程名，共 N 节），并按我的默认笔记方式继续处理。
+请使用 zju-notes-assistant 读取最近一次导出的课堂录音（课程名，共 N 节），并按我的默认笔记方式继续处理。
 ```
 
-The helper should generate this sentence from the successful export results and provide a copy button. When the user sends it, read `~/.zju-classroom-export/latest-job.json` and follow `job-manifest.md`.
+The helper should generate this sentence from the successful export results and provide a copy button. When the user sends it, read `~/.zju-notes-assistant/latest-job.json` and follow `job-manifest.md`.
 
 ## Markdown Fallback Format
 

@@ -19,9 +19,9 @@ const {
 } = require("./zju_courseware");
 
 const USER_AGENT =
-  "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0 zju-classroom-export";
-const DEFAULT_AUTH_PATH = path.join(os.homedir(), ".zju-classroom-export", "auth.json");
-const STATE_DIR = path.join(os.homedir(), ".zju-classroom-export");
+  "Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101 Firefox/88.0 zju-notes-assistant";
+const STATE_DIR = path.join(os.homedir(), ".zju-notes-assistant");
+const DEFAULT_AUTH_PATH = path.join(STATE_DIR, "auth.json");
 const DEFAULT_CONFIG_PATH = path.join(STATE_DIR, "config.json");
 const LATEST_JOB_PATH = path.join(STATE_DIR, "latest-job.json");
 
@@ -602,7 +602,7 @@ const chooseWithNativeDialog = async (options) => {
 const buildJobManifest = ({ results, outputDir, outputMode }) => {
   const createdAt = new Date().toISOString();
   return {
-    schema: "zju-classroom-export.job.v1",
+    schema: "zju-notes-assistant.job.v1",
     created_at: createdAt,
     output_mode: outputMode || "local_path",
     output_dir: outputDir || "",
@@ -627,7 +627,7 @@ const buildJobManifest = ({ results, outputDir, outputMode }) => {
 };
 
 const buildCoursewareJobManifest = ({ results, outputDir, source }) => ({
-  schema: "zju-classroom-export.job.v1",
+  schema: "zju-notes-assistant.job.v1",
   created_at: new Date().toISOString(),
   output_mode: "local_path",
   output_dir: outputDir || "",
@@ -664,7 +664,7 @@ const writeJobCopies = (job, outputDir) => {
   for (const [courseDir, items] of grouped.entries()) {
     fs.mkdirSync(courseDir, { recursive: true });
     const courseJob = { ...job, output_dir: courseDir, items };
-    const outputJobFile = path.join(courseDir, "zju-classroom-export.job.json");
+    const outputJobFile = path.join(courseDir, "zju-notes-assistant.job.json");
     fs.writeFileSync(outputJobFile, `${JSON.stringify(courseJob, null, 2)}\n`);
     outputJobFiles.push(outputJobFile);
   }
@@ -728,7 +728,7 @@ const pageHtml = () => `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ZJU Classroom Export</title>
+  <title>ZJU Notes Assistant</title>
   <style>
     :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     body { margin: 0; background: #f7f8fa; color: #1f2933; }
@@ -802,7 +802,7 @@ const pageHtml = () => `<!doctype html>
 <body>
 <header>
   <div>
-    <h1>ZJU Classroom Export</h1>
+    <h1>ZJU Notes Assistant</h1>
     <p>登录浙大账号后，可以导出智云课堂语音原文、智云课件 PDF，以及学在浙大的课程文件。PDF 批注和章节笔记在导出后由 AI 继续处理。</p>
   </div>
 </header>
@@ -1094,7 +1094,7 @@ const updateHandoffPrompt = () => {
       return;
     }
     const countText = selectedFiles.length ? "，共 " + selectedFiles.length + " 个文件" : "";
-    prompt.value = "请使用 zju-classroom-export 读取最近一次导出的课程文件（" + names.join("、") + countText + "），并按我的默认笔记方式继续处理。";
+    prompt.value = "请使用 zju-notes-assistant 读取最近一次导出的课程文件（" + names.join("、") + countText + "），并按我的默认笔记方式继续处理。";
     return;
   }
   const selected = selectedReplayRows();
@@ -1104,7 +1104,7 @@ const updateHandoffPrompt = () => {
     return;
   }
   const kind = activeExportTab === "slides" ? "智云课件 PDF" : "课堂录音";
-  prompt.value = "请使用 zju-classroom-export 读取最近一次导出的" + kind + "（" + (names.join("、") || "所选课程") + "，共 " + selected.length + " 节），并按我的默认笔记方式继续处理。";
+  prompt.value = "请使用 zju-notes-assistant 读取最近一次导出的" + kind + "（" + (names.join("、") || "所选课程") + "，共 " + selected.length + " 节），并按我的默认笔记方式继续处理。";
 };
 const updateSelectionSummary = () => {
   const selected = selectedReplayRows();
@@ -1622,7 +1622,7 @@ const serve = async () => {
     }
   });
   server.listen(port, "127.0.0.1", () => {
-    console.log(`ZJU Classroom Export login helper: http://127.0.0.1:${port}`);
+    console.log(`ZJU Notes Assistant login helper: http://127.0.0.1:${port}`);
     console.log(`Config file: ${configPath}`);
     console.log(`Auth file: ${authPath}`);
   });

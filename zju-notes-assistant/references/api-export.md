@@ -24,7 +24,7 @@ https://yjapi.cmc.zju.edu.cn/courseapi/v3/web-socket/search-trans-result?sub_id=
 - Do not ask the user to paste their ZJU password into chat.
 - If login is needed, prefer `scripts/zju_classroom_auth.js serve` and ask the user to open the local `127.0.0.1` page. Password input stays inside the local helper process.
 - `scripts/zju_classroom_auth.js login` is available as a terminal fallback, but do not make it the default user experience.
-- Do not store passwords. The helper stores only `~/.zju-classroom-export/auth.json` with classroom token, domain/path-scoped cookies, and username for the user's local machine.
+- Do not store passwords. The helper stores only `~/.zju-notes-assistant/auth.json` with classroom token, domain/path-scoped cookies, and username for the user's local machine.
 - Auth files created by the current helper use `cookie_jar_version: 2`. A legacy auth file may still work for bearer-token transcript access, but Learning in ZJU requires one local re-login so cookies are not sent without domain scoping.
 - Try the no-cookie API request first when `sub_id` is known. If it fails with auth/session errors, use the user's normal authenticated browser/session or fall back to the official page export button.
 - To list a student's own courses, find replays by date, or search available courseware, expect to need the student's normal authenticated session/token.
@@ -48,7 +48,7 @@ http://127.0.0.1:8787
 
 The page is bound to localhost only. On first use it collects course-note preferences, then lets the user log in, list replay candidates by day/month, select multiple classes, and export transcripts. Returning users keep their saved config and login state.
 
-Local state is kept together under `~/.zju-classroom-export/`:
+Local state is kept together under `~/.zju-notes-assistant/`:
 
 ```text
 config.json
@@ -102,7 +102,7 @@ node scripts/zju_classroom_auth.js token
 Pass the saved token to transcript fetching when direct no-auth subtitle access fails:
 
 ```bash
-node scripts/fetch_transcript_api.js --sub-id SUB_ID --auth-file ~/.zju-classroom-export/auth.json --out transcript.md
+node scripts/fetch_transcript_api.js --sub-id SUB_ID --auth-file ~/.zju-notes-assistant/auth.json --out transcript.md
 ```
 
 ## Preferred Fast Path
@@ -132,7 +132,7 @@ Workflow:
 3. Filter by course name, teacher, date, and section words.
 4. If exactly one or a clearly intended set of candidates matches, export transcripts directly.
 5. If multiple candidates are plausible, ask the user to choose.
-6. Create or read `zju-classroom-export.job.json` containing the exported transcript paths.
+6. Create or read `zju-notes-assistant.job.json` containing the exported transcript paths.
 7. Continue into the requested downstream workflow:
    - "生成课堂笔记" normally means ask whether they prefer PDF annotation/classroom summary or chapter notes, unless their config has a default.
    - If PDF/course folder matching is ambiguous, ask for a PDF path or course folder.

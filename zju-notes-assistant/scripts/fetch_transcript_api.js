@@ -36,7 +36,7 @@ const dateFromSection = (section.match(/\d{4}-\d{2}-\d{2}/) || [new Date().toISO
 const title = [course, section, teacher].filter(Boolean).join(" ");
 
 const headers = {
-  "User-Agent": "Mozilla/5.0 zju-classroom-export",
+  "User-Agent": "Mozilla/5.0 zju-notes-assistant",
   "Accept": "application/json",
 };
 if (!authorization && authFile) {

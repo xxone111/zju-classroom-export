@@ -2,7 +2,7 @@
   "vault_root": "~/Documents/Course Notes",
   "note_app": "filesystem",
   "download_dir": "~/Downloads",
-  "auth_file": "~/.zju-classroom-export/auth.json",
+  "auth_file": "~/.zju-notes-assistant/auth.json",
   "replay_source": "local_login_helper",
   "preferred_transcript_format": "md",
   "course_folder_strategy": "match_course_name",

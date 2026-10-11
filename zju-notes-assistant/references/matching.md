@@ -5,7 +5,7 @@ Use this workflow before copying transcripts into a note vault, annotating PDFs,
 ## Inputs
 
 - Prefer exact paths the user provides for transcript, course folder, or PDF.
-- Otherwise use `vault_root` and `download_dir` from `zju-classroom-export.config.json`.
+- Otherwise use `vault_root` and `download_dir` from `zju-notes-assistant.config.json`.
 - Extract candidate course name, date, section, teacher, and topic words from transcript frontmatter, DOCX text, filename, replay metadata, and the user's request.
 
 ## Course Folder Matching

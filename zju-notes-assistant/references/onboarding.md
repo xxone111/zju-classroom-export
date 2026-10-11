@@ -1,6 +1,6 @@
 # First-Time Onboarding
 
-Use this when the skill is triggered and neither `~/.zju-classroom-export/config.json` nor a workspace `zju-classroom-export.config.json` is found, or when the user asks to initialize/setup the skill.
+Use this when the skill is triggered and neither `~/.zju-notes-assistant/config.json` nor a workspace `zju-notes-assistant.config.json` is found, or when the user asks to initialize/setup the skill.
 
 Default to long-term setup on first use. Guide the user through configuration questions so future exports, course-folder matching, PDF annotation, and chapter-note workflows can run smoothly. Still provide a clear escape hatch for one-off export.
 
@@ -24,11 +24,11 @@ Prefer the integrated setup/login/export page over asking configuration question
 
 1. Start `node scripts/zju_classroom_auth.js serve` and open the printed localhost URL.
 2. The user sets course-note root, note organization, one of the three visual note modes, optional custom reference note, and transcript output folder.
-3. Clicking `保存使用偏好` explicitly approves writing `~/.zju-classroom-export/config.json`.
+3. Clicking `保存使用偏好` explicitly approves writing `~/.zju-notes-assistant/config.json`.
 4. The same page uses one paginated export workspace with separate tabs for transcript export, Smart Classroom slide PDF export, and Learning in ZJU course-file download.
-5. Password is never persisted. Auth token/cookies remain in `~/.zju-classroom-export/auth.json`.
+5. Password is never persisted. Auth token/cookies remain in `~/.zju-notes-assistant/auth.json`.
 6. Export actions stay inside the active export tab. A separate AI handoff area builds its instruction from the currently selected courses/files.
-7. The helper writes `~/.zju-classroom-export/latest-job.json`; AI continues PDF annotation or chapter notes in chat.
+7. The helper writes `~/.zju-notes-assistant/latest-job.json`; AI continues PDF annotation or chapter notes in chat.
 
 The helper must not ask for the current PDF, match courseware, annotate files, or generate notes. Those remain AI workflows after transcript export.
 
@@ -49,7 +49,7 @@ Only when the integrated local UI cannot start, ask all initialization questions
    默认：本地文件
 
 3. 本地登录助手是否把登录状态保存在默认位置？
-   默认位置：~/.zju-classroom-export/auth.json
+   默认位置：~/.zju-notes-assistant/auth.json
    推荐：使用默认。
    说明：这里保存的是用于访问智云课堂的登录状态，不保存你的浙大密码。以后你再次导出课程录音时，通常不需要重复登录。
 
@@ -84,7 +84,7 @@ For normal first-time setup, ask these setup questions as one list. Parse the us
    - 默认使用 `filesystem`。
    - Map Obsidian to `obsidian`, 本地文件 to `filesystem`, 其他 to `filesystem` unless the user gives a specific integration need.
 3. auth 文件：
-   - 默认 `~/.zju-classroom-export/auth.json`。
+   - 默认 `~/.zju-notes-assistant/auth.json`。
    - 只保存本地 token/cookies，不保存密码。
    - 不要要求用户把密码粘贴到聊天里。
 4. 默认笔记方式：
@@ -95,7 +95,7 @@ For normal first-time setup, ask these setup questions as one list. Parse the us
    - 询问是否有一篇希望模仿的章节笔记路径。
    - 没有就留空，使用所选模板。
 6. 是否创建配置文件：
-   - 只有用户确认创建时才写入 `~/.zju-classroom-export/config.json`。
+   - 只有用户确认创建时才写入 `~/.zju-notes-assistant/config.json`。
 
 ## Setup Questions To Ask The User
 
@@ -106,7 +106,7 @@ Use Chinese user-facing prompts like these:
 
 1. 课程笔记根目录是什么？
 2. 你主要使用什么笔记软件或文件组织方式？可选：Obsidian / 本地文件 / 其他。默认：本地文件。
-3. 本地登录助手是否把登录状态保存在默认位置 ~/.zju-classroom-export/auth.json？推荐：使用默认。
+3. 本地登录助手是否把登录状态保存在默认位置 ~/.zju-notes-assistant/auth.json？推荐：使用默认。
 4. 默认使用哪种笔记方式？可选：A 章节笔记（纯文字） / B 课件精注（PDF 附注） / C 自定义模板。
 5. 字幕输出文件夹是什么？默认：~/Downloads。
 6. 是否创建默认配置文件以便之后自动使用？可选：是 / 否，先临时使用本次设置。推荐：是。
@@ -126,7 +126,7 @@ After collecting setup answers, draft this and ask for confirmation before writi
   "vault_root": "~/Documents/Course Notes",
   "note_app": "filesystem",
   "download_dir": "~/Downloads",
-  "auth_file": "~/.zju-classroom-export/auth.json",
+  "auth_file": "~/.zju-notes-assistant/auth.json",
   "replay_source": "local_login_helper",
   "preferred_transcript_format": "md",
   "course_folder_strategy": "match_course_name",
@@ -143,7 +143,7 @@ Adjust `vault_root`, `note_app`, `auth_file`, `default_note_workflow`, and `styl
 
 Recommended first-run flow:
 
-1. Check for `~/.zju-classroom-export/config.json`, then a workspace legacy config.
+1. Check for `~/.zju-notes-assistant/config.json`, then a workspace config.
 2. If absent, explain the capabilities and open the integrated local UI.
 3. Let the user explicitly save preferences, log in, select replays, and export in that UI.
 4. If the UI cannot start, use the one-shot chat fallback and ask for confirmation before writing.

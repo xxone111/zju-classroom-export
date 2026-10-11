@@ -1,8 +1,9 @@
-# ZJU Classroom Export
+# ZJU Notes Assistant
 
-面向浙江大学学生的Agent Skill：
-- 通过本地网页登录，批量导出**智云课堂语音识别原文、智云课件 PDF 和“学在浙大”课程附件**
-- AI根据课堂语音原文，根据PPT生成**课件精注**，或直接生成**章节课堂笔记**。
+面向浙江大学学生的本地课程导出与 AI 笔记助手，包含本地网页工具和配套 Agent Skill：
+
+- 通过本地网页登录，批量导出**智云课堂语音识别原文、智云课件 PDF 和“学在浙大”课程附件**。
+- AI 根据课堂语音原文和 PPT 生成**课件精注**，或直接生成**章节课堂笔记**。
 
 > 请仅访问和下载本人账号正常有权访问的课程内容，并遵守学校平台规则、课程要求和著作权规定。
 
@@ -27,25 +28,25 @@
 如果电脑上已经安装 [Node.js](https://nodejs.org/) 18 或更高版本，可以使用 [Vercel Agent Skills CLI](https://github.com/vercel-labs/skills) 安装：
 
 ```bash
-npx skills add xxone111/zju-classroom-export
+npx skills add xxone111/zju-notes-assistant
 ```
 
-适用于用于 Claude Code、Codex、Cursor、OpenCode 等支持 Agent Skills 的客户端。
+适用于 Claude Code、Codex、Cursor、OpenCode 等支持 Agent Skills 的客户端。
 
 也可以直接指定客户端并安装到用户级目录：
 
 ```bash
 # Claude Code
-npx skills add xxone111/zju-classroom-export --skill zju-classroom-export -g -a claude-code
+npx skills add xxone111/zju-notes-assistant --skill zju-notes-assistant -g -a claude-code
 
 # Codex
-npx skills add xxone111/zju-classroom-export --skill zju-classroom-export -g -a codex
+npx skills add xxone111/zju-notes-assistant --skill zju-notes-assistant -g -a codex
 
 # Cursor
-npx skills add xxone111/zju-classroom-export --skill zju-classroom-export -g -a cursor
+npx skills add xxone111/zju-notes-assistant --skill zju-notes-assistant -g -a cursor
 
 # OpenCode
-npx skills add xxone111/zju-classroom-export --skill zju-classroom-export -g -a opencode
+npx skills add xxone111/zju-notes-assistant --skill zju-notes-assistant -g -a opencode
 ```
 
 检查并更新已安装的 skill：
@@ -56,13 +57,13 @@ npx skills update
 
 ### 备用：下载或克隆后手动安装
 
-1. 从 [GitHub Releases](https://github.com/xxone111/zju-classroom-export/releases) 下载压缩包，或克隆本仓库。
-2. 找到内层包含 `SKILL.md` 的 `zju-classroom-export` 文件夹。
+1. 从 [GitHub Releases](https://github.com/xxone111/zju-notes-assistant/releases) 下载压缩包，或克隆本仓库。
+2. 找到内层包含 `SKILL.md` 的 `zju-notes-assistant` 文件夹。
 3. 将整个文件夹复制或链接到所用 AI 助手的 skills 目录。
 4. 重新启动该 AI 助手，或开始一个新任务。
 
 ```bash
-git clone https://github.com/xxone111/zju-classroom-export.git
+git clone https://github.com/xxone111/zju-notes-assistant.git
 ```
 
 ## 功能
@@ -91,7 +92,7 @@ git clone https://github.com/xxone111/zju-classroom-export.git
     ├── 课程名称_日期节次_教师_语音识别原文.md
     ├── 课程名称_日期节次_课件.pdf
     ├── 学在浙大课程附件
-    ├── zju-classroom-export.job.json
+    ├── zju-notes-assistant.job.json
     ├── 课程名称_日期节次_课件精注.pdf
     └── 课程名称_日期节次_课堂重点摘要.md
 ```
@@ -101,7 +102,7 @@ git clone https://github.com/xxone111/zju-classroom-export.git
 在支持 Agent Skills 的 AI 助手中输入：
 
 ```text
-请使用 zju-classroom-export 帮我初始化并打开本地登录助手。
+请使用 zju-notes-assistant 帮我初始化并打开本地登录助手。
 ```
 
 AI 助手会启动仅监听 `127.0.0.1` 的本地页面。首次配置包括：
@@ -142,9 +143,9 @@ AI 助手会启动仅监听 `127.0.0.1` 的本地页面。首次配置包括：
 默认位置：
 
 ```text
-~/.zju-classroom-export/config.json
-~/.zju-classroom-export/auth.json
-~/.zju-classroom-export/latest-job.json
+~/.zju-notes-assistant/config.json
+~/.zju-notes-assistant/auth.json
+~/.zju-notes-assistant/latest-job.json
 ```
 
 - `config.json`：导出目录和笔记偏好。

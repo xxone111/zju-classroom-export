@@ -1,15 +1,15 @@
 ---
-name: zju-classroom-export
+name: zju-notes-assistant
 description: Export Zhejiang University Smart Classroom replay transcripts and slide PDFs, download course files from Learning in ZJU, and optionally organize them into a configured course-note vault with PDF annotations, classroom summaries, or chapter notes. Use when the user asks to list ZJU courses/replays, export 导出语音识别/原文/课件, download 学在浙大 course files, match recordings with courseware PDFs, annotate PDFs, or generate classroom/chapter notes.
 ---
 
-# ZJU Classroom Export
+# ZJU Notes Assistant
 
 ## Purpose
 
 Use this skill to export Zhejiang University Smart Classroom replay speech-recognition originals, then optionally organize the transcript with the user's course notes and courseware PDFs.
 
-The public version is configurable. Do not assume any personal Obsidian path, course folder layout, PDF metadata, or note style. Prefer `~/.zju-classroom-export/config.json`; also accept a workspace `zju-classroom-export.config.json` for legacy or project-specific overrides.
+The public version is configurable. Do not assume any personal Obsidian path, course folder layout, PDF metadata, or note style. Prefer `~/.zju-notes-assistant/config.json`; also accept a workspace `zju-notes-assistant.config.json` for project-specific overrides.
 
 ## Quick Routing
 
@@ -18,7 +18,7 @@ The public version is configurable. Do not assume any personal Obsidian path, co
 - **Replay export**: Read [references/export.md](references/export.md). Prefer API-first transcript export. Use a provided replay URL/`sub_id`, or use the local web login helper to obtain a short-lived classroom token and list replays. Do not use Computer Use for routine transcript export.
 - **API-first transcript export**: Read [references/api-export.md](references/api-export.md) before any browser fallback.
 - **Courseware export**: Read [references/courseware-export.md](references/courseware-export.md) before listing Learning in ZJU files or exporting Smart Classroom slides as PDF.
-- **Continue exported helper jobs**: Read [references/job-manifest.md](references/job-manifest.md) when `zju-classroom-export.job.json` exists or the user asks to continue after web-helper export.
+- **Continue exported helper jobs**: Read [references/job-manifest.md](references/job-manifest.md) when `zju-notes-assistant.job.json` exists or the user asks to continue after web-helper export.
 - **Transcript/PDF matching**: Read [references/matching.md](references/matching.md). PDF matching never depends on frontmatter.
 - **PDF annotation and classroom summary**: Read [references/pdf-integration.md](references/pdf-integration.md).
 - **Chapter notes and `with record` updates**: Read [references/chapter-notes.md](references/chapter-notes.md).
@@ -43,8 +43,8 @@ The public version is configurable. Do not assume any personal Obsidian path, co
 
 - **Replay export**: An official `.docx`, a Markdown transcript, or both, based on user preference/configuration.
 - **Courseware export**: Original files from Learning in ZJU, or a PDF assembled from Smart Classroom replay slide images.
-- **Helper job handoff**: A `zju-classroom-export.job.json` manifest that records exported transcripts; the downstream workflow remains `ask` until the user tells AI what to do.
-- **User-facing handoff**: The helper shows what kind of replay selection fits the intended note, summarizes the selected classes, and generates a copyable instruction. AI reads `~/.zju-classroom-export/latest-job.json` automatically; do not ask the user for its path unless it is missing.
+- **Helper job handoff**: A `zju-notes-assistant.job.json` manifest that records exported transcripts; the downstream workflow remains `ask` until the user tells AI what to do.
+- **User-facing handoff**: The helper shows what kind of replay selection fits the intended note, summarizes the selected classes, and generates a copyable instruction. AI reads `~/.zju-notes-assistant/latest-job.json` automatically; do not ask the user for its path unless it is missing.
 - **Course-note organization**: A copied transcript in the matched course folder when configured and confidently matched.
 - **PDF integration**: The matched PDF annotated in place, plus a classroom summary Markdown note.
 - **Chapter-note workflow**: Chapter Markdown notes with lecture-derived content, course homepage `#Content` entries marked `*with record*`, and non-courseware reminders placed on the course homepage.

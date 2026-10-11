@@ -35,7 +35,7 @@ This PDF is built from replay slide images. Do not describe it as Office PPT/PPT
 
 Treat the selected output directory as an export root. Put every exported transcript, Smart Classroom PDF, and Learning in ZJU attachment under `output_root/课程名/`. Reuse the same sanitized course folder name across all three export types.
 
-After download, write the exported paths to `~/.zju-classroom-export/latest-job.json` and write a course-specific `zju-classroom-export.job.json` inside every affected `output_root/课程名/` folder. Set `next_workflow` to `ask`; the web page only exports files, while AI later asks whether to annotate a PDF, create chapter notes, or only archive the files.
+After download, write the exported paths to `~/.zju-notes-assistant/latest-job.json` and write a course-specific `zju-notes-assistant.job.json` inside every affected `output_root/课程名/` folder. Set `next_workflow` to `ask`; the web page only exports files, while AI later asks whether to annotate a PDF, create chapter notes, or only archive the files.
 
 In the local UI, keep transcript, Smart Classroom PDF, and Learning in ZJU exports in one tabbed workspace. Paginate course/replay/file tables without losing selections across pages. Keep export buttons in the active export tab; generate the AI handoff text separately from the current selection.
 
