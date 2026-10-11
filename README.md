@@ -66,7 +66,9 @@ git clone https://github.com/xxone111/zju-notes-assistant.git
    
 4. 按课程统一归档录音、课件、课程附件和后续笔记。
 
-5. 支持两类默认AI笔记工作流，也可自行上传自定义笔记模版。
+   <img width="654" height="248" alt="image" src="https://github.com/user-attachments/assets/0e39cbd3-9388-4924-8061-5b2f972d7eb8" />
+
+6. 支持两类默认AI笔记工作流，也可自行上传自定义笔记模版。
   - **课件精注**：将老师的讲解匹配到 PDF 页面，以附注形式写入，并生成课堂重点摘要。
     
     <img width="589" height="401" alt="image" src="https://github.com/user-attachments/assets/6452238c-1a4c-47ad-9151-4c66c4c85263" />
