@@ -1,0 +1,3 @@
+display_name: ZJU Classroom Export
+short_description: Export ZJU transcripts, slide PDFs, and course files.
+default_prompt: Export selected ZJU replay transcripts or courseware and organize them into my configured course notes.
