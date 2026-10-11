@@ -69,17 +69,28 @@ git clone https://github.com/xxone111/zju-notes-assistant.git
 ## 功能
 
 1. 在本机网页中登录浙江大学账号，自动读取可访问的课程与回放。
+   
    <img width="873" height="355" alt="image" src="https://github.com/user-attachments/assets/9f25448c-fe1b-459e-afa7-330c3c6ebddf" />
+   
 2. 按日期筛选并批量导出智云课堂语音识别原文。
+   
    <img width="862" height="593" alt="image" src="https://github.com/user-attachments/assets/55f2b6ca-d340-4622-b2cd-7b14b3f65f08" />
+   
 3. 将智云课堂回放中的课件页导出为PDF；或读取“学在浙大”课程列表，批量下载教师上传的原始附件。
+   
    <img width="872" height="591" alt="image" src="https://github.com/user-attachments/assets/301a03aa-786d-4d05-9a8a-a181dfaaeae9" />
+   
 4. 按课程统一归档录音、课件、课程附件和后续笔记。
+
 5. 支持两类默认AI笔记工作流，也可自行上传自定义笔记模版。
   - **课件精注**：将老师的讲解匹配到 PDF 页面，以附注形式写入，并生成课堂重点摘要。
+    
     <img width="589" height="401" alt="image" src="https://github.com/user-attachments/assets/6452238c-1a4c-47ad-9151-4c66c4c85263" />
+    
   - **章节笔记**：根据课件结构，将录音整理为纯文字章节笔记。
+    
     <img width="699" height="609" alt="image" src="https://github.com/user-attachments/assets/fcc39146-9822-421c-9ea7-4eb15da6f0e0" />
+    
   - 支持自定义笔记模板和 Obsidian、本地文件等组织方式。
 
 ## 输出目录
