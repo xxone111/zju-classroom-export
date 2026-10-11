@@ -92,6 +92,10 @@ git clone https://github.com/xxone111/zju-notes-assistant.git
     <img width="699" height="609" alt="image" src="https://github.com/user-attachments/assets/fcc39146-9822-421c-9ea7-4eb15da6f0e0" />
     
   - 支持自定义笔记模板和 Obsidian、本地文件等组织方式。
+    
+6. 支持生成课堂主页，记录与课程有关的相关事项，包括作业布置、小测安排、课程资料及老师提醒等。（图中双链仅适用于Obsidian）
+   <img width="763" height="680" alt="image" src="https://github.com/user-attachments/assets/e60b4571-a069-429b-acb2-5e4dcaa2e89b" />
+
 
 ## 输出目录
 
