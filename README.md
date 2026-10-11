@@ -1,6 +1,6 @@
 # ZJU Classroom Export
 
-面向浙江大学学生的 Codex Skill：通过本地网页登录助手批量导出智云课堂语音识别原文、智云课件 PDF 和“学在浙大”课程附件，并继续生成课件精注或章节笔记。
+面向浙江大学学生的 Agent Skill：通过本地网页登录助手批量导出智云课堂语音识别原文、智云课件 PDF 和“学在浙大”课程附件，并继续生成课件精注或章节笔记。
 
 > 非浙江大学官方项目。请仅访问和下载本人账号正常有权访问的课程内容，并遵守学校平台规则、课程要求和著作权规定。
 
@@ -33,35 +33,71 @@
 
 ## 安装
 
-### 方式一：下载 Release
+### 推荐：使用通用 Agent Skills 安装器
 
-1. 从 GitHub Releases 下载 `zju-classroom-export.zip`。
-2. 解压后，将其中的 `zju-classroom-export` 文件夹放到：
+如果电脑上已经安装 [Node.js](https://nodejs.org/) 18 或更高版本，可以使用 [Vercel Agent Skills CLI](https://github.com/vercel-labs/skills) 安装：
 
-   ```text
-   ~/.codex/skills/zju-classroom-export
-   ```
+```bash
+npx skills add xxone111/zju-classroom-export
+```
 
-3. 重新启动 Codex，或开始一个新任务。
+安装器会检测本机支持的 AI 助手，并让你选择安装目标和作用范围。它可用于 Claude Code、Codex、Cursor、OpenCode 等支持 Agent Skills 的客户端，不需要手动判断技能目录。
 
-### 方式二：克隆仓库
+也可以直接指定客户端并安装到用户级目录：
+
+```bash
+# Claude Code
+npx skills add xxone111/zju-classroom-export --skill zju-classroom-export -g -a claude-code
+
+# Codex
+npx skills add xxone111/zju-classroom-export --skill zju-classroom-export -g -a codex
+
+# Cursor
+npx skills add xxone111/zju-classroom-export --skill zju-classroom-export -g -a cursor
+
+# OpenCode
+npx skills add xxone111/zju-classroom-export --skill zju-classroom-export -g -a opencode
+```
+
+检查并更新已安装的 skill：
+
+```bash
+npx skills update
+```
+
+> `npx skills` 支持的客户端及目录映射会随版本变化，请以安装器当前显示的结果为准。
+
+### 备用：下载或克隆后手动安装
+
+1. 从 [GitHub Releases](https://github.com/xxone111/zju-classroom-export/releases) 下载压缩包，或克隆本仓库。
+2. 找到内层包含 `SKILL.md` 的 `zju-classroom-export` 文件夹。
+3. 将整个文件夹复制或链接到所用 AI 助手的 skills 目录。
+4. 重新启动该 AI 助手，或开始一个新任务。
 
 ```bash
 git clone https://github.com/xxone111/zju-classroom-export.git
-cp -R zju-classroom-export/zju-classroom-export ~/.codex/skills/
 ```
 
-Windows 用户可将 skill 文件夹复制到 Codex 用户目录下的 `skills` 文件夹；如果不确定位置，可以在 Codex 中调用 `$skill-installer` 并提供本仓库地址。
+常见用户级目录如下，但不同版本可能采用不同位置：
+
+| 客户端 | 常见目录 |
+|---|---|
+| Claude Code | `~/.claude/skills/` |
+| Cursor | `~/.cursor/skills/` |
+| OpenCode | `~/.config/opencode/skills/` |
+| Codex | 建议使用上方安装器自动确定 |
+
+如果你的客户端不支持 Agent Skills 或 `SKILL.md`，仅下载本仓库不会自动获得这些能力。你仍可手动启动本地导出助手，但后续 AI 笔记工作流需要由所用客户端自行读取并执行 `SKILL.md`。
 
 ## 首次使用
 
-在 Codex 中输入：
+在支持 Agent Skills 的 AI 助手中输入：
 
 ```text
 请使用 zju-classroom-export 帮我初始化并打开本地登录助手。
 ```
 
-Codex 会启动仅监听 `127.0.0.1` 的本地页面。首次配置包括：
+AI 助手会启动仅监听 `127.0.0.1` 的本地页面。首次配置包括：
 
 1. 课程笔记根目录，可留空。
 2. 笔记组织方式：本地文件、Obsidian 或其他。
@@ -96,7 +132,7 @@ Codex 会启动仅监听 `127.0.0.1` 的本地页面。首次配置包括：
 
 ## 手动启动本地助手
 
-通常由 Codex 自动启动。需要手动运行时：
+通常由支持本地命令执行的 AI 助手自动启动。需要手动运行时：
 
 ```bash
 node zju-classroom-export/scripts/zju_classroom_auth.js serve --port 8787
